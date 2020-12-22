@@ -14,9 +14,7 @@ let package = Package(
             targets: ["EthereumKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pengpengliu/Crypto101.git", .upToNextMinor(from: "0.2.3")),
-//        .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.3.1")),
-        // .package(url: "https://github.com/attaswift/BigInt.git", from: "5.2.1"),
+        .package(url: "https://github.com/pengpengliu/Crypto101.git", .upToNextMinor(from: "0.3.0")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
