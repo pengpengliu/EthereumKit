@@ -8,7 +8,6 @@
 import Foundation
 import Crypto101
 import CryptoSwift
-import BigInt
 
 public struct Transaction {
     public enum Error: Swift.Error {
