@@ -5,9 +5,6 @@ import PackageDescription
 
 let package = Package(
     name: "EthereumKit",
-    platforms: [
-        .macOS(.v10_12),
-    ],
     products: [
         .library(
             name: "EthereumKit",
