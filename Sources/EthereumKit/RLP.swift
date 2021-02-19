@@ -76,7 +76,18 @@ public struct RLP {
                 innerRemainder = d.1
             }
             return (decoded, Array(input[length...]))
+        } else {
+            // a list  over 55 bytes long
+            let llength = Int(firstByte - 0xf6)
+            length = Int(Array(input[1..<llength]).toHexString(), radix: 16)!
+            let totalLength = llength + length
+            innerRemainder = Array(input[llength..<totalLength])
+            while innerRemainder.count != 0 {
+                let d = _decode(innerRemainder)
+                decoded.append(d.0)
+                innerRemainder = d.1
+            }
+            return (decoded, Array(input[length...]))
         }
-        return (decoded, innerRemainder)
     }
 }

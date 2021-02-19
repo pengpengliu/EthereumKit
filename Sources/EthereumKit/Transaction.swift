@@ -62,9 +62,7 @@ public struct Transaction {
             items.append(contentsOf: [[UInt8(chainId)], [], [] ]) // EIP155
         }
         let raw = RLP.encode(items)
-        print(raw.toHexString())
         let hash = raw.sha3(.keccak256)
-        print(hash.toHexString())
         let signature = try ECC.Key(priv: ecKey, curve: .secp256k1).sign(hash: hash)
 
         self.r = signature.r
