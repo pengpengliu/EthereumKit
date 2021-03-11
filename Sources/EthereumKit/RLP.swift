@@ -66,6 +66,12 @@ public struct RLP {
             }
             return (data, Array(input[length...]))
         }
+        else if (firstByte <= 0xbf) {
+            let llength = Int(firstByte - 0xb6)
+            length = Int(Array(input[1..<llength]).toHexString(), radix: 16)!
+            data = Array(input[llength..<llength+length])
+            return (data, Array(input[(length+llength)...]))
+        }
         else if (firstByte <= 0xf7) {
             // a list between  0-55 bytes long
             length = Int(firstByte - 0xbf)
@@ -76,7 +82,8 @@ public struct RLP {
                 innerRemainder = d.1
             }
             return (decoded, Array(input[length...]))
-        } else {
+        }
+        else {
             // a list  over 55 bytes long
             let llength = Int(firstByte - 0xf6)
             length = Int(Array(input[1..<llength]).toHexString(), radix: 16)!
